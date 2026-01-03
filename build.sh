@@ -171,17 +171,22 @@ declare -ra bits=(
 
 declare -r languages='c,c++'
 
-declare -ra deprecated_targets=(
-	'armv6-unknown-linux-gnueabi'
-)
+declare -ra deprecated_targets=()
 
-declare -ra targets=(
-	'x86_64-unknown-linux-gnu'
-	'aarch64-unknown-linux-gnu'
-	'arm-unknown-linux-gnueabi'
-	'arm-unknown-linux-gnueabihf'
-	'i386-unknown-linux-gnu'
-)
+if (( native )); then
+	declare -ra targets=(
+		'x86_64-unknown-linux-gnu'
+		'aarch64-unknown-linux-gnu'
+		'arm-unknown-linux-gnueabi'
+		'arm-unknown-linux-gnueabihf'
+		'i386-unknown-linux-gnu'
+		'armv6-unknown-linux-gnueabi'
+	)
+else
+	declare -ra targets=(
+		'armv6-unknown-linux-gnueabi'
+	)
+fi
 
 declare -r PKG_CONFIG_PATH="${toolchain_directory}/lib/pkgconfig"
 declare -r PKG_CONFIG_LIBDIR="${PKG_CONFIG_PATH}"
