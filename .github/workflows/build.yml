@@ -306,7 +306,7 @@ jobs:
     - name: Generate tarball
       run: |
         declare tarball_filename='/tmp/${{ matrix.target }}.tar.xz'
-        tar --directory='/tmp' --create --file=- 'obggcc' | xz --threads='0' --extreme --memlimit-compress='100%' --compress -9 > "${tarball_filename}"
+        tar --directory='/tmp' --create --file=- 'motomagx-gcc-cross' | xz --threads='0' --extreme --memlimit-compress='100%' --compress -9 > "${tarball_filename}"
         sha256sum "${tarball_filename}" | sed 's|/tmp/||' > "${tarball_filename}.sha256"
     - name: Upload artifact
       uses: actions/upload-artifact@main
