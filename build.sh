@@ -28,7 +28,12 @@ set -eu
 
 declare -r revision="$(git rev-parse --short HEAD)"
 
-declare -r toolchain_directory="${build_directory}/obggcc"
+if (( native )); then
+	declare -r toolchain_directory="${build_directory}/obggcc"
+else
+	declare -r toolchain_directory="${build_directory}/motomagx-gcc-cross"
+fi
+
 declare -r share_directory="${toolchain_directory}/usr/local/share/obggcc"
 
 declare -r environment="LD_LIBRARY_PATH=${toolchain_directory}/lib PATH=${PATH}:${toolchain_directory}/bin"
