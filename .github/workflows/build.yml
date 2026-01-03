@@ -307,10 +307,10 @@ jobs:
         if [[ '${{ matrix.target }}' = *'-mingw32' ]]; then
             declare tarball_filename='/tmp/${{ matrix.target }}.zip'
             cd '/tmp'
-            zip --recurse-paths -9 "${tarball_filename}" 'obggcc'
+            zip --recurse-paths -9 "${tarball_filename}" 'motomagx-gcc-cross'
         else
             declare tarball_filename='/tmp/${{ matrix.target }}.tar.xz'
-            tar --directory='/tmp' --create --file=- 'obggcc' | xz --threads='0' --extreme --memlimit-compress='100%' --compress -9 > "${tarball_filename}"
+            tar --directory='/tmp' --create --file=- 'motomagx-gcc-cross' | xz --threads='0' --extreme --memlimit-compress='100%' --compress -9 > "${tarball_filename}"
         fi
         sha256sum "${tarball_filename}" | sed 's|/tmp/||' > "${tarball_filename}.sha256"
     - name: Upload artifact
